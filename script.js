@@ -2,10 +2,8 @@ import './style.scss'
 
 class Sketch {
   constructor() {
-
     this.setup()
     this.draw()
-
   }
 
   setup() {
