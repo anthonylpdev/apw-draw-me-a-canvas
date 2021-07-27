@@ -21,7 +21,7 @@ class Sketch {
     this.ctx.scale(this.DPR, this.DPR)
 
     this.ctx.lineWidth = 1
-
+    console.log('foo')
   }
 
   draw() {
