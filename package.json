@@ -12,6 +12,7 @@
   },
   "scripts": {
     "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "sass": "sass --watch ./style.scss:./style.css"
   }
 }

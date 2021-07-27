@@ -1,55 +1,136 @@
-import './style.scss'
+const canvas = document.querySelector("#canvas")
 
-class Sketch {
-  constructor() {
-    this.setup()
-    this.draw()
+canvas.width = window.innerWidth
+
+canvas.height = window.innerHeight
+
+const context = canvas.getContext("2d")
+
+context.strokeStyle = "black"
+
+context.lineWidth = 5 
+
+context.lineCap = "round"
+
+let shouldPaint = false
+
+document.addEventListener("mousedown", function (event)
+{
+  shouldPaint = true
+
+  context.moveTo(event.pageX, event.pageY)
+
+  context.beginPath()
+
+})
+
+document.addEventListener("mouseup", function (event)
+{
+  shouldPaint = false
+})
+
+
+document.addEventListener("mousemove", function(event) {
+
+  if (shouldPaint)
+  {
+
+  context.lineTo(event.pageX, event.pageY)
+
+  context.stroke()
   }
 
-  setup() {
-    this.canvas = document.getElementById('main')
-    this.ctx = this.canvas.getContext('2d')
-    this.WIDTH = window.innerWidth
-    this.HEIGHT = window.innerHeight
-    this.DPR = Math.max(devicePixelRatio, 2)
-    this.steps = 100
-    this.base = this.WIDTH / this.steps
-    this.canvas.width = this.WIDTH * this.DPR
-    this.canvas.height = this.HEIGHT * this.DPR
-    this.canvas.style.width = `${this.WIDTH}px`
-    this.canvas.style.height = `${this.HEIGHT}px`
-    this.ctx.scale(this.DPR, this.DPR)
+})
 
-    this.ctx.lineWidth = 1
+const sizeSelected = document.querySelector(".size")
+const currentColor = document.querySelector(".current__color")
+const defaultsize = document.querySelector("#flex_second  a#five")
+const color = document.querySelectorAll("#flex > nav > a")
+const size = document.querySelectorAll("#flex_second > .nav_second > a")
+const eraser = document.querySelector(".eraser")
+const full = document.querySelector(".all")
 
+
+
+function setColor() {
+  for(var i = 0; i < color.length; i++){
+    const color_data = color[i].dataset.color;
+    color[i].style.backgroundColor = color_data;
   }
-
-  draw() {
-    this.time = window.performance.now()
-
-    this.clear()
-
-    this.ctx.beginPath()
-    const linesNb = 10;
-    for (let indexLine = 0; indexLine < linesNb; indexLine++) {
-      this.ctx.moveTo(0, this.HEIGHT / 2)
-      this.ctx.strokeStyle = `hsla(${(indexLine + 1) / linesNb * 360}, 50%, 50%, .5)`
-      for (let indexDraw = 0; indexDraw < this.steps; indexDraw++) {
-        let factor = Math.sin(indexDraw * 0.08 + this.time * 0.0001)
-        this.ctx.lineTo(this.base * indexDraw, this.HEIGHT / 2 + factor * 100 + indexLine * 10)
-      }
-      this.ctx.stroke()
-    }
+}
+setColor();
 
 
-    requestAnimationFrame(this.draw.bind(this))
-  }
+for(var i = 0; i < color.length; i++){
+  color[i].addEventListener('click', (e) => {
+    eraser.classList.remove("selected_eraser");
+    current__color__e = e.target.dataset.color
 
-  clear() {
-    this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT)
-  }
-
-
+    console.log(current__color__e)
+    currentColor.style.backgroundColor = current__color__e;
+  })
 }
 
-new Sketch()
+for(var i = 0; i < size.length; i++){
+  size[i].addEventListener('click', (e) => {
+    full.classList.remove("selected_full");
+    eraser.classList.remove("selected_eraser");
+    current__size__e = e.target.innerHTML;
+
+    context.lineWidth = current__size__e 
+
+    sizeSelected.innerHTML = current__size__e 
+  })
+
+  
+}
+
+defaultsize.classList.add("selected_a");
+
+eraser.addEventListener('click', () => {
+  for(var i = 0; i < color.length; i++){
+    color[i].classList.remove("selected_a")
+  }
+  eraser.classList.toggle("selected_eraser");
+  full.classList.remove("selected_full");
+})
+
+full.addEventListener('click', () => {
+  for(var i = 0; i < size.length; i++){
+    size[i].classList.remove("selected_a")
+  }
+  full.classList.toggle("selected_full");
+  eraser.classList.remove("selected_eraser");
+  context.lineWidth = 4000 
+  sizeSelected.innerHTML = 'Full';
+})
+
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", function(event){
+    context.strokeStyle = this.style.backgroundColor
+
+  })
+})
+
+const clear = document.querySelector("#clear")
+
+clear.addEventListener("click",() => {
+    // Use the identity matrix while clearing the canvas
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+})
+
+
+const saveButton = document.getElementById('capture');
+saveButton.addEventListener('click', () => save(canvas));
+
+
+function save(canvas) {
+  const data = canvas.toDataURL('image/png');
+  const anchor = document.createElement('a');
+  anchor.href = data;
+  anchor.download = 'image.png';
+  anchor.click();
+}
+
+

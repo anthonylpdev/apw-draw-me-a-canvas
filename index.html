@@ -2,11 +2,129 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Paint.net + (stickers)</title>
+    <title>Paint Web Etienne Pharabot</title> 
+    <meta name="Author" content="Etienne Pharabot"/>
+    <meta name="Keywords" content="Document HTML5 exemple"/>
+    <meta name="Description" content="Document HTML5 exemple"/>
+    <meta name="viewport" content="width=device-width, initial scale=1.0, maximum-scale=1.0"/>
+  
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <canvas id="main"></canvas>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <div class="container__absolute">
+        <div class="current__color"></div>
+
+        <p>Size Selected : <span class="size">5</span></p>
+    </div>
+
+
+
+    <div class="overlay">
+      <canvas id="canvas"></canvas>
+      <div id="flex">
+    
+        <nav>
+          <a href="#" data-color="#FF0000"></a>
+          <a href="#" data-color="#0000FF"></a>
+          <a href="#" data-color="#00FF00"></a>
+          <a href="#" data-color="#FF9700"></a>
+          <a href="#" data-color="#FF00FF"></a>
+        </nav>
+    
+        <nav>
+          <a href="#" data-color="#00FFFF"></a>
+          <a href="#" data-color="#0096FF"></a>
+          <a href="#" data-color="#0059FF"></a>
+          <a href="#" data-color="#000AFF"></a>
+          <a href="#" data-color="#00007F"></a>
+    
+        </nav>
+    
+        <nav>
+          <a href="#" data-color="#00FF00"></a>
+          <a href="#" data-color="#00AB00"></a>
+          <a href="#" data-color="#005E00"></a>
+          <a href="#" data-color="#044D2D"></a>
+          <a href="#" data-color="#033B17"></a>
+        </nav>
+    
+        <nav>
+          <a href="#" data-color="#A60000"></a>
+          <a href="#" data-color="#83001F"></a>
+          <a href="#" data-color="#56001F"></a>
+          <a href="#" data-color="#6E0560"></a>
+          <a href="#" data-color="#510563"></a>
+        </nav>
+    
+        <nav>
+          <a href="#" data-color="#FFFF1F"></a>
+          <a href="#" data-color="#C8FF1F"></a>
+          <a href="#" data-color="#D43615"></a>
+          <a href="#" data-color="#D43A40"></a>
+          <a href="#" data-color="#003A40"></a>
+        </nav>
+    
+        <nav>
+          <a href="#" id="border"  data-color="#BFBFBF"></a>
+          <a href="#" data-color="#BFBFBF"></a>
+          <a href="#" data-color="#808080"></a>
+          <a href="#" data-color="#404040"></a>
+          <a href="#"  class="selected_a" data-color="#000000"></a>
+        </nav>
+    
+      </div>
+    
+    
+    
+      <div id="flex_second">
+    
+        <nav class="nav_second">
+          <a href="#" id="half" > 0.5 </a>
+          <a href="#" id="one" > 1 </a>
+          <a href="#" id="three" > 3 </a>
+          <a href="#" id="five" class="selected_a"> 5 </a>
+          <a href="#" id="eight" > 8 </a>
+        </nav>
+    
+        <nav class="nav_second">
+          <a href="#" id="ten" > 10 </a>
+          <a href="#" id="twenty" > 20 </a>
+          <a href="#" id="thirty" > 30 </a>
+          <a href="#" id="forty" > 40 </a>
+          <a href="#" id="fifty" >  50 </a>
+        </nav>
+    
+        <nav class="nav_second">
+          <a href="#" id="hundred" > 100 </a>
+          <a href="#" id="two_hundred" > 200 </a>
+          <a href="#" id="four_hundred" > 400 </a>
+          <a href="#" id="six_hundred" > 600 </a>
+          <a href="#" id="eight_hundred" >  800 </a>
+        </nav>
+    
+      </div>
+    
+    
+      <nav id="nav_third">
+    
+        <a href="#" class="all"> Full </a>
+    
+        <a href="#" class="eraser" > Eraser </a>
+    
+        <a href="#" id="clear" > Start Again </a>
+    
+        <a href="#" id="capture"> Save </a>
+      </nav>
+    
+    
+    
+    
+    </div>
+      </div>
+    <script type="text/javascript" src="./script.js"></script>
+    
+    </body>
+    </html>
