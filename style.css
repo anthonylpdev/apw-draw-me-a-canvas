@@ -7,24 +7,22 @@ body
 .container__absolute {
   position: absolute;
 }
-.current__color {
+.container__absolute .current__color {
   width: 200px;
   height: 200px;
   background-color: black;
   border: 1px solid grey;
+  transition:0.5s all ease-in-out;
 }
 
-p {
+.container__absolute p {
   font-family: sans-serif;
   font-size: 20px;
   margin-top:30px;
   color: black;
+  transition:0.5s all ease-in-out;
 }
 
-.content
-{
-  font-family: 'Poppins',sans-serif;
-}
 
 nav
 {
@@ -49,7 +47,7 @@ nav a
   margin: 0 10px 0 0;
 }
 
-a#half,a#one,a#three,a#five,a#eight,a#ten,a#twenty,a#thirty,a#forty,a#fifty,a#hundred,a#two_hundred,a#four_hundred,a#six_hundred,a#eight_hundred
+.nav_second a
 {
   display: inline-block;
   width: 40px;
@@ -61,9 +59,11 @@ a#half,a#one,a#three,a#five,a#eight,a#ten,a#twenty,a#thirty,a#forty,a#fifty,a#hu
   text-decoration: none;
   background-color: black;
   text-align: center; 
+  border: 1px solid black;
+  transition:0.5s all ease-in-out;
 }
 
-#clear,#capture,.eraser,.all
+.clear,.capture,.eraser,.all
 {
   display: inline-block;
   width: 140px;
@@ -76,14 +76,11 @@ a#half,a#one,a#three,a#five,a#eight,a#ten,a#twenty,a#thirty,a#forty,a#fifty,a#hu
   background-color: black;
   text-align: center; 
   transition:0.5s all ease-in-out;
+  border: 1px solid black;
 
 }
 
-.eraser {
-  color: black;
-  background-color: white;
-  border: 3px solid black;
-}
+
 
 
 
@@ -97,6 +94,13 @@ a#half,a#one,a#three,a#five,a#eight,a#ten,a#twenty,a#thirty,a#forty,a#fifty,a#hu
 }
 
 
+.nav_second a.selected__size {
+  background-color: white;
+  color: black;
+  transition:0.5s all ease-in-out;
+  border: 1px solid black;
+}
+
 
 .selected_a
 {
@@ -105,21 +109,14 @@ a#half,a#one,a#three,a#five,a#eight,a#ten,a#twenty,a#thirty,a#forty,a#fifty,a#hu
 }
 
 
-a.selected_full
+a.selected_button
 {
-  background-color: grey;
-  color: white;
+  background-color: white;
+  color: black;
   transition:0.5s all ease-in-out;
-  border: 0;
+  border: 1px solid black;
 }
 
-a.selected_eraser
-{
-  background-color: black;
-  color: white;
-  transition:0.5s all ease-in-out;
-  border: 3px solid white;
-}
 
 
 div#black
@@ -162,26 +159,7 @@ div#black
   background-color: white;
 }
 
-h3#teasing
-{
-  position: fixed;
-  font-size: 25px;
-  color: white;
-  top: 50%;
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-  right: 0;
-  left: 0;
-  padding-left: 25px;
-  padding-right: 25px;
-  display: none;
-}
 
-h3#teasing
-  {
-    display: none;
-  }
 
 @media all and (max-width:830px )
 {

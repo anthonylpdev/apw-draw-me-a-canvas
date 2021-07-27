@@ -44,12 +44,16 @@ document.addEventListener("mousemove", function(event) {
 
 const sizeSelected = document.querySelector(".size")
 const currentColor = document.querySelector(".current__color")
-const defaultsize = document.querySelector("#flex_second  a#five")
 const color = document.querySelectorAll("#flex > nav > a")
 const size = document.querySelectorAll("#flex_second > .nav_second > a")
 const eraser = document.querySelector(".eraser")
 const full = document.querySelector(".all")
 
+const defaultSize = document.querySelector(".default");
+
+window.addEventListener("DOMContentLoaded", (event) => {
+defaultSize.classList.add("selected__size")
+});
 
 
 function setColor() {
@@ -60,10 +64,16 @@ function setColor() {
 }
 setColor();
 
+function resetSize() {
+  for(var i = 0; i < size.length; i++){
+    size[i].classList.remove("selected__size")
+  }
+}
+
 
 for(var i = 0; i < color.length; i++){
   color[i].addEventListener('click', (e) => {
-    eraser.classList.remove("selected_eraser");
+    eraser.classList.remove("selected_button");
     current__color__e = e.target.dataset.color
 
     console.log(current__color__e)
@@ -72,9 +82,12 @@ for(var i = 0; i < color.length; i++){
 }
 
 for(var i = 0; i < size.length; i++){
+  
   size[i].addEventListener('click', (e) => {
-    full.classList.remove("selected_full");
-    eraser.classList.remove("selected_eraser");
+    resetSize();
+    e.target.classList.add("selected__size")
+    full.classList.remove("selected_button");
+    eraser.classList.remove("selected_button");
     current__size__e = e.target.innerHTML;
 
     context.lineWidth = current__size__e 
@@ -82,25 +95,25 @@ for(var i = 0; i < size.length; i++){
     sizeSelected.innerHTML = current__size__e 
   })
 
-  
+  size[i].classList.remove("selected__size")
 }
 
-defaultsize.classList.add("selected_a");
-
 eraser.addEventListener('click', () => {
+  resetSize();
   for(var i = 0; i < color.length; i++){
     color[i].classList.remove("selected_a")
   }
-  eraser.classList.toggle("selected_eraser");
-  full.classList.remove("selected_full");
+  eraser.classList.toggle("selected_button");
+  full.classList.remove("selected_button");
 })
 
 full.addEventListener('click', () => {
+  resetSize();
   for(var i = 0; i < size.length; i++){
     size[i].classList.remove("selected_a")
   }
-  full.classList.toggle("selected_full");
-  eraser.classList.remove("selected_eraser");
+  full.classList.toggle("selected_button");
+  eraser.classList.remove("selected_button");
   context.lineWidth = 4000 
   sizeSelected.innerHTML = 'Full';
 })
@@ -112,7 +125,7 @@ document.querySelectorAll("nav a").forEach(link => {
   })
 })
 
-const clear = document.querySelector("#clear")
+const clear = document.querySelector(".clear")
 
 clear.addEventListener("click",() => {
     // Use the identity matrix while clearing the canvas
@@ -121,7 +134,7 @@ clear.addEventListener("click",() => {
 })
 
 
-const saveButton = document.getElementById('capture');
+const saveButton = document.querySelector('.capture');
 saveButton.addEventListener('click', () => save(canvas));
 
 
