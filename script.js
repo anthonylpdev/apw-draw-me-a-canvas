@@ -46,6 +46,7 @@ const sizeSelected = document.querySelector(".size")
 const currentColor = document.querySelector(".current__color")
 const color = document.querySelectorAll("#flex > nav > a")
 const size = document.querySelectorAll("#flex_second > .nav_second > a")
+const form = document.querySelectorAll("#flex_second > .nav_third > a.form")
 const eraser = document.querySelector(".eraser")
 const full = document.querySelector(".all")
 
@@ -68,6 +69,39 @@ function resetSize() {
   for(var i = 0; i < size.length; i++){
     size[i].classList.remove("selected__size")
   }
+}
+
+function resetForm() {
+  for(var i = 0; i < form.length; i++){
+    form[i].classList.remove("selected__form")
+  }
+}
+
+for(var i = 0; i < form.length; i++){
+  form[i].addEventListener('click', (e) => {
+
+    console.log(e)
+    resetForm()
+
+    if (e.target.localName == "span") {
+      e.target.parentElement.classList.add("selected__form")
+    }else {
+    e.target.classList.add("selected__form")
+    }
+
+    if (e.target.classList.contains("round")) {
+      console.log(e.target.classList)
+      context.lineCap = "round"
+      console.log(context.lineCap)
+    } else if (e.target.classList.contains("square")) {
+      context.lineCap = "square"
+      console.log(context.lineCap)
+    } else if (e.target.children[0].classList.contains("square")){
+      context.lineCap = "square"
+    }else if (e.target.children[0].classList.contains("round")){
+      context.lineCap = "round"
+    }
+  })
 }
 
 
@@ -117,6 +151,12 @@ full.addEventListener('click', () => {
   context.lineWidth = 4000 
   sizeSelected.innerHTML = 'Full';
 })
+
+
+
+
+
+
 
 document.querySelectorAll("nav a").forEach(link => {
   link.addEventListener("click", function(event){

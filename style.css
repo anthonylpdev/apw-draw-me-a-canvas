@@ -33,9 +33,17 @@ nav
 
 .nav_second
 {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  display: flex;
+}
+
+.nav_third
+{
 
   margin-bottom: 10px;
   margin-left: 10px;
+  display: flex;
 }
 
 
@@ -61,7 +69,6 @@ nav a.white
 
 .nav_second a
 {
-  display: inline-block;
   width: 40px;
   height: 40px;
   border-radius: 20px;
@@ -72,6 +79,43 @@ nav a.white
   background-color: black;
   text-align: center; 
   border: 1px solid black;
+  transition:0.5s all ease-in-out;
+  display: flex;
+  justify-content: center;
+}
+
+.nav_third a
+{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin: 0 10px 0 0;
+  color: white;
+  line-height: 40px;
+  text-decoration: none;
+  background-color: black;
+  text-align: center; 
+  border: 1px solid black;
+  transition:0.5s all ease-in-out;
+  display: flex;
+  justify-content: center;
+  transition:0.5s all ease-in-out;
+}
+
+.nav_third a span.round {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 20px;
+  align-self: center;
+  transition:0.5s all ease-in-out;
+}
+
+.nav_third a span.square {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  align-self: center;
   transition:0.5s all ease-in-out;
 }
 
@@ -112,6 +156,19 @@ nav a.white
   transition:0.5s all ease-in-out;
   border: 1px solid black;
 }
+
+.nav_third a.selected__form {
+  background-color: white;
+  color: black;
+  transition:0.5s all ease-in-out;
+  border: 1px solid black;
+}
+
+.nav_third a.selected__form span.round, .nav_third a.selected__form span.square {
+  background-color: black;
+  transition:0.5s all ease-in-out;
+}
+
 
 a.selected_button
 {
