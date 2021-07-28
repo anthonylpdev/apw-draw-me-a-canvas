@@ -1,19 +1,22 @@
 import './style.scss'
+import Particle from './Particle'
+import Color from 'nice-color-palettes'
 
 class Sketch {
   constructor() {
     this.setup()
-    this.draw()
   }
 
   setup() {
+    this.time = window.performance.now()
+
+    this.color = Color[this.randomRange(0, Color.length - 1)]
+
     this.canvas = document.getElementById('main')
     this.ctx = this.canvas.getContext('2d')
     this.WIDTH = window.innerWidth
     this.HEIGHT = window.innerHeight
     this.DPR = Math.max(devicePixelRatio, 2)
-    this.steps = 100
-    this.base = this.WIDTH / this.steps
     this.canvas.width = this.WIDTH * this.DPR
     this.canvas.height = this.HEIGHT * this.DPR
     this.canvas.style.width = `${this.WIDTH}px`
@@ -22,33 +25,48 @@ class Sketch {
 
     this.ctx.lineWidth = 1
 
+    this.mouse = {
+      x: this.WIDTH / 2,
+      y: this.HEIGHT / 2,
+    }
+
+    this.particles = []
+    for (let indexLine = 0; indexLine < 20; indexLine++) {
+      this.particles.push(
+          new Particle(this.ctx, this.mouse.x, this.mouse.y, 10, this.color))
+    }
+
+    document.addEventListener('mousemove', (ev) => {
+      this.mouse.x = ev.clientX
+      this.mouse.y = ev.clientY
+    })
+
+    this.animate()
+
   }
 
-  draw() {
+  animate() {
     this.time = window.performance.now()
 
     this.clear()
 
-    this.ctx.beginPath()
-    const linesNb = 10;
-    for (let indexLine = 0; indexLine < linesNb; indexLine++) {
-      this.ctx.moveTo(0, this.HEIGHT / 2)
-      this.ctx.strokeStyle = `hsla(${(indexLine + 1) / linesNb * 360}, 50%, 50%, .5)`
-      for (let indexDraw = 0; indexDraw < this.steps; indexDraw++) {
-        let factor = Math.sin(indexDraw * 0.08 + this.time * 0.0001)
-        this.ctx.lineTo(this.base * indexDraw, this.HEIGHT / 2 + factor * 100 + indexLine * 10)
-      }
-      this.ctx.stroke()
+    for (let indexLine = 0; indexLine < this.particles.length; indexLine++) {
+      this.particles[indexLine].animate(this.time, this.mouse)
     }
 
-
-    requestAnimationFrame(this.draw.bind(this))
+    requestAnimationFrame(this.animate.bind(this))
   }
 
   clear() {
-    this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT)
+    this.ctx.fillStyle = `rgba(255, 255, 255, 0.05)`
+    this.ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT)
+
+    // this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT)
   }
 
+  randomRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
 
 }
 
