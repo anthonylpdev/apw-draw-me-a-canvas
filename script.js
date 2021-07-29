@@ -25,6 +25,9 @@ class Sketch {
 
     this.ctx.lineWidth = 1
 
+    this.ctx.fillStyle = `rgba(0, 0, 0, 1)`
+    this.ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT)
+
     this.mouse = {
       x: this.WIDTH / 2,
       y: this.HEIGHT / 2,
@@ -58,7 +61,7 @@ class Sketch {
   }
 
   clear() {
-    this.ctx.fillStyle = `rgba(255, 255, 255, 0.05)`
+    this.ctx.fillStyle = `rgba(0, 0, 0, 0.05)`
     this.ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT)
 
     // this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT)
