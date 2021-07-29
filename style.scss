@@ -1,4 +1,14 @@
 @import "~reset-css";
+@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
+
+@font-face {
+  font-family: 'magilioregular';
+  src: url('./font/magilioregular-yzv2o-webfont.woff2') format('woff2'),
+  url('./font/magilioregular-yzv2o-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
 
 body {
   display: flex;
@@ -6,7 +16,18 @@ body {
   align-items: center;
   height: 100vh;
   width: 100vw;
+  background-color: #8E2500;
+  text-align: center;
+  h1 {
+    font-family: "magilioregular", sans-serif;
+    color: #E6E1D3;
+    font-size: 120px;
+  }
+  // background-image: url("./background.jpeg");
   canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 512px;
     height: 512px;
     // box-shadow: 1px 1px 30px #cecece;
