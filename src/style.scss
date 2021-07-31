@@ -1,0 +1,115 @@
+@import "~reset-css";
+@import "./scss/font.scss";
+@import "./scss/variable.scss";
+body {
+  background-color: $background-primary;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  font-family: "Aeonik", sans-serif;
+  padding-top: 80px;
+  overflow-x: hidden;
+  main {
+    color: $color-primary;
+    header {
+      display: flex;
+      justify-content: flex-end;
+      ul {
+        display: flex;
+        li {
+          a {
+            text-transform: uppercase;
+            @include text-style-body-regular-text-2();
+            color: $color-primary;
+            text-decoration: none;
+          }
+          &:not(:first-child){
+            padding-left: 24px;
+          }
+        }
+      }
+      nav {
+        flex-grow: 1;
+        ul {
+          justify-content: center;
+          li {
+          }
+        }
+      }
+    }
+    section {
+      &.presentation {
+        padding-top: 304px;
+        h1 {
+          color: $color-primary;
+          font-size: 120px;
+          @include text-style-title-h-1();
+          text-align: center;
+          letter-spacing: 0.08em;
+          text-transform: lowercase;
+          span {
+            color: transparent;
+            -webkit-text-stroke: 1px $color-primary;
+          }
+        }
+        ul {
+          display: flex;
+          justify-content: center;
+          padding-top: 64px;
+          li {
+            @include text-style-body-regular-text-2();
+            color: $color-secondary;
+            text-align: center;
+            letter-spacing: 2.24em;
+            text-transform: uppercase;
+            &:not(:first-child){
+              padding-left: 64px;
+              margin-left: 64px;
+              position: relative;
+              &:before {
+                content: "|";
+                position: absolute;
+                top: 0;
+                left: 0;
+                color: $color-primary;
+              }
+            }
+          }
+        }
+      }
+      &.description {
+        padding-top: 160px;
+      }
+    }
+  }
+  aside {
+    font-family: "Kate Med", sans-serif;
+    font-size: 480px;
+    line-height: 500px;
+    display: flex;
+    align-items: center;
+    text-transform: lowercase;
+    color: transparent;
+    -webkit-text-stroke: 1px $color-primary;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.1;
+  }
+  .container {
+    width: 1312px;
+    margin: 0 auto;
+  }
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 512px;
+    height: 512px;
+    &#test {
+      z-index: 1000;
+      background-color: #fff;
+    }
+    // box-shadow: 1px 1px 30px #cecece;
+  }
+}

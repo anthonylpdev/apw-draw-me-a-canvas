@@ -1,11 +1,11 @@
 import './style.scss'
-import Particle from './Particle'
+import Particle from './js/Particle'
 import Color from 'nice-color-palettes'
-import imgBrush from './brush-01.png'
+import imgBrush from '../assets/img/brush-01.png'
 
 class Sketch {
   constructor() {
-    this.setup()
+    // this.setup()
   }
 
   setup() {
@@ -66,8 +66,8 @@ class Sketch {
     this.ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT)
 
     this.mouse = {
-      x: this.WIDTH / 2,
-      y: this.HEIGHT / 2,
+      x: null,
+      y: null,
     }
 
     this.brush = new Image()

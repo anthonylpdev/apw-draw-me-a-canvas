@@ -1,0 +1,33 @@
+$color-primary: rgba(207, 214, 244, 1);
+$color-invert: rgba(20, 24, 38, 1);
+$color-secondary: rgba(227, 208, 154, 1);
+$background-primary: rgba(20, 24, 38, 1);
+$background-invert: rgba(207, 214, 244, 1);
+@mixin text-style-body-regular-text-2 {
+  font-size: 14px;
+  font-family: "Aeonik", sans-serif;
+  font-weight: lighter;
+  font-style: normal;
+  line-height: 24px;
+}
+@mixin text-style-body-regular-text-3 {
+  font-size: 14px;
+  font-family: "Aeonik", sans-serif;
+  font-weight: lighter;
+  font-style: normal;
+  line-height: 48px;
+}
+@mixin text-style-body-regular-text-1 {
+  font-size: 14px;
+  font-family: "Aeonik", sans-serif;
+  font-weight: lighter;
+  font-style: normal;
+  line-height: 24px;
+}
+@mixin text-style-title-h-1 {
+  font-size: 72px;
+  font-family: "Kate Black", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  line-height: 56px;
+}

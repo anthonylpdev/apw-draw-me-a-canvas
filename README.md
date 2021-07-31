@@ -16,9 +16,11 @@ yarn dev
 - CanvasRenderingContext2D
 - Créer ou moins une interaction au curseur
 
-## Inspiration
-https://www.youtube.com/watch?v=j_BgnpMPxzM&list=WL&index=46
-https://www.youtube.com/watch?v=83L6B13ixQ0
+## Credit
+### Fonts
+https://cotypefoundry.com/trial-fonts/?font=Aeonik
+https://www.almarena.fr/shop/kate-typeface/
 
-## Source
-https://www.youtube.com/watch?v=raXW5J1Te7Y
+### Image
+https://unsplash.com/photos/dIKLuM5EyRw
+
