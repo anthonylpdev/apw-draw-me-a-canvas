@@ -7,9 +7,17 @@ body {
   width: 100vw;
   text-align: center;
   font-family: "Aeonik", sans-serif;
-  padding-top: 80px;
   overflow-x: hidden;
+  &.on-animation {
+    overflow: hidden;
+  }
+  * {
+    &::selection {
+      background-color: $color-secondary;
+    }
+  }
   main {
+    padding: 80px 0;
     color: $color-primary;
     header {
       display: flex;
@@ -23,9 +31,25 @@ body {
             color: $color-primary;
             text-decoration: none;
           }
-          &:not(:first-child){
+          &:not(:first-child) {
             padding-left: 24px;
           }
+        }
+      }
+      .switcher {
+        display: flex;
+        svg {
+          padding: 4px 0;
+          margin-left: 16px;
+        }
+        ul {
+          li {
+          &.active {
+            a {
+              color: $color-secondary;
+            }
+          }
+        }
         }
       }
       nav {
@@ -33,6 +57,18 @@ body {
         ul {
           justify-content: center;
           li {
+            position: relative;
+            &.active {
+              &:after {
+                content: "";
+                height: 1px;
+                width: 100%;
+                background-color: $color-secondary;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+              }
+            }
           }
         }
       }
@@ -62,7 +98,7 @@ body {
             text-align: center;
             letter-spacing: 2.24em;
             text-transform: uppercase;
-            &:not(:first-child){
+            &:not(:first-child) {
               padding-left: 64px;
               margin-left: 64px;
               position: relative;
@@ -76,14 +112,42 @@ body {
             }
           }
         }
+        svg {
+          margin-top: 132px;
+          letter-spacing: 8px;
+          font-family: "Aeonik", sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 14px;
+          color: $color-primary;
+          text-transform: lowercase;
+          transform: scale(0.9);
+        }
       }
       &.description {
         padding-top: 160px;
+        p {
+          @include text-style-body-regular-text-3();
+          display: block;
+          width: 640px;
+          margin: 0 auto;
+          text-align: center;
+          text-transform: uppercase;
+          letter-spacing: 0.24em;
+        }
+        > * {
+          &:not(:first-child) {
+            padding-top: 128px;
+          }
+        }
       }
     }
   }
   aside {
-    font-family: "Kate Med", sans-serif;
+    z-index: -1;
+    width: 100%;
+    font-family: "Kate Disp", sans-serif;
     font-size: 480px;
     line-height: 500px;
     display: flex;
@@ -91,14 +155,18 @@ body {
     text-transform: lowercase;
     color: transparent;
     -webkit-text-stroke: 1px $color-primary;
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: -328px;
     left: 0;
+    word-break: break-all;
     opacity: 0.1;
   }
   .container {
     width: 1312px;
     margin: 0 auto;
+  }
+  .hide-on-load {
+    opacity: 0;
   }
   canvas {
     position: fixed;

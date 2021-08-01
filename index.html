@@ -7,20 +7,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Draw me a canvas</title>
 </head>
-<body>
+<body class="on-animation">
 
 <main>
     <header class="container">
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <ul class="switcher">
-            <li><a href="#">en</a></li>
-        </ul>
+        <div class="switcher">
+            <ul>
+                <li class="active"><a href="#">en</a></li>
+            </ul>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.64604 4.64604C1.69249 4.59948 1.74766 4.56253 1.80841 4.53733C1.86915 4.51212 1.93427 4.49915 2.00004 4.49915C2.06581 4.49915 2.13093 4.51212 2.19167 4.53733C2.25242 4.56253 2.30759 4.59948 2.35404 4.64604L8.00004 10.293L13.646 4.64604C13.6925 4.59955 13.7477 4.56267 13.8085 4.53752C13.8692 4.51236 13.9343 4.49941 14 4.49941C14.0658 4.49941 14.1309 4.51236 14.1916 4.53752C14.2524 4.56267 14.3076 4.59955 14.354 4.64604C14.4005 4.69253 14.4374 4.74772 14.4626 4.80846C14.4877 4.86919 14.5007 4.9343 14.5007 5.00004C14.5007 5.06578 14.4877 5.13088 14.4626 5.19162C14.4374 5.25236 14.4005 5.30755 14.354 5.35404L8.35404 11.354C8.30759 11.4006 8.25242 11.4375 8.19167 11.4628C8.13093 11.488 8.06581 11.5009 8.00004 11.5009C7.93427 11.5009 7.86915 11.488 7.80841 11.4628C7.74766 11.4375 7.69248 11.4006 7.64604 11.354L1.64604 5.35404C1.59948 5.30759 1.56253 5.25242 1.53733 5.19167C1.51212 5.13093 1.49915 5.06581 1.49915 5.00004C1.49915 4.93427 1.51212 4.86915 1.53733 4.80841C1.56253 4.74766 1.59948 4.69248 1.64604 4.64604Z" fill="#CFD6F4"/>
+            </svg>
+        </div>
     </header>
     <section class="presentation">
         <h1>Brooklyn <span>Simmons</span></h1>
@@ -28,6 +33,14 @@
             <li>Photographer</li>
             <li>Explorer</li>
         </ul>
+        <svg x="0" y="0" width="140" height="140" viewBox="0 0 140 140">
+            <defs>
+                <path id="circlePath" d="M 70, 70 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "/>
+            </defs>
+            <text x="0" y="0" fill="currentColor" text-anchor="start">
+                <textPath xlink:href="#circlePath">scroll down - scroll down - </textPath>
+            </text>
+        </svg>
     </section>
     <section class="description">
         <p>Cumque pertinacius ut legum gnarus accusatorem flagitaret atque sollemnia, doctus id Caesar libertatemque superbiam ratus tamquam obtrectatorem audacem excarnificari praecepit, qui ita evisceratus ut cruciatibus membra deessent, inplorans caelo iustitiam.</p>
@@ -37,9 +50,9 @@
 </main>
 <aside>
     <div class="container">
-    Brook<br>lyn SimmonsBrooklyn Simmons</aside>
+    Brook<br>lyn SimmonsBrooklyn SimmonsBrooklyn SimmonsBrooklyn Simmons
     </div>
-
+</aside>
 <canvas id="main"></canvas>
 <script src="src/script.js"></script>
 </body>

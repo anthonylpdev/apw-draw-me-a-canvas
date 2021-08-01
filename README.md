@@ -18,9 +18,9 @@ yarn dev
 
 ## Credit
 ### Fonts
-https://cotypefoundry.com/trial-fonts/?font=Aeonik
-https://www.almarena.fr/shop/kate-typeface/
+- https://cotypefoundry.com/trial-fonts/?font=Aeonik
+- https://www.almarena.fr/shop/kate-typeface/
 
 ### Image
-https://unsplash.com/photos/dIKLuM5EyRw
+- https://unsplash.com/photos/dIKLuM5EyRw
 

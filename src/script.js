@@ -1,11 +1,12 @@
 import './style.scss'
 import Particle from './js/Particle'
 import Color from 'nice-color-palettes'
-import imgBrush from '../assets/img/brush-01.png'
+import imgBrush from '../assets/img/brush-02.png'
+import gsap from 'gsap'
 
 class Sketch {
   constructor() {
-    // this.setup()
+    this.setup()
   }
 
   setup() {
@@ -37,7 +38,7 @@ class Sketch {
     // this.ctx.direction = 'rtl';
 
     console.log(this.ctx)
-    this.ctx.lineWidth = 1
+    // this.ctx.lineWidth = 1
 
     // this.ctx.direction = 'ltr'
     // this.ctx.fillStyle = '#e6e1d3'
@@ -62,12 +63,13 @@ class Sketch {
     // this.ctx.miterLimit = 10
     // this.ctx.shadowBlur = 0
 
-    this.ctx.fillStyle = `#E6E1D3`
+    this.ctx.fillStyle = `rgba(255, 255, 255, 0.2)`
+    this.ctx.filter = 'blur(16px)'
     this.ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT)
 
     this.mouse = {
-      x: null,
-      y: null,
+      x: -1000,
+      y: -1000,
     }
 
     this.brush = new Image()
@@ -76,16 +78,74 @@ class Sketch {
     }
     this.brush.src = imgBrush
 
-    this.particles = []
-    for (let indexLine = 0; indexLine < 1; indexLine++) {
-      this.particles.push(
-          new Particle(this.ctx, this.mouse.x, this.mouse.y, 10, this.color,
-              this.brush))
-    }
-
-    document.addEventListener('mousemove', (ev) => {
+    this.part = new Particle(
+        this.ctx,
+        this.mouse.x,
+        this.mouse.y,
+        this.brush,
+    )
+    const clearCanvas = (ev) => {
       this.mouse.x = ev.clientX
       this.mouse.y = ev.clientY
+    }
+    const finishClearCanvas = () => {
+      this.part.particleScale = 5
+      this.mouse.x = 0
+      this.mouse.y = -this.HEIGHT * 1.5
+      const duration = 0.2
+
+      gsap.timeline().to(this.mouse, {
+        y: this.HEIGHT * 1.5,
+        duration: duration,
+      }).to(this.mouse, {
+        x: this.WIDTH / 4,
+        duration: 0,
+      }).to(this.mouse, {
+        y: 0,
+        duration: duration,
+      }).to(this.mouse, {
+        x: this.WIDTH / 2,
+        duration: 0,
+      }).to(this.mouse, {
+        y: this.HEIGHT * 1.5,
+        duration: duration,
+      }).to(this.mouse, {
+        x: 3 * this.WIDTH / 4,
+        duration: 0,
+      }).to(this.mouse, {
+        y: 0,
+        duration: duration,
+      }).to(this.mouse, {
+        x: this.WIDTH,
+        duration: 0,
+      })
+      .to(this.mouse, {
+        x: -this.WIDTH / 2,
+        y: this.HEIGHT / 2,
+      }).to(this.mouse, {
+        x: this.WIDTH,
+        duration: duration,
+      }).to(this.mouse, {
+        x: 0,
+        y: 0,
+        duration: duration,
+      }).to(this.mouse, {
+        x: this.WIDTH,
+        duration: duration,
+        onComplete: () => {
+          this.ctx.fillStyle = `rgba(255, 255, 255, 0.1)`
+          this.ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT)
+          this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT)
+        }
+      }).play()
+    }
+
+    document.addEventListener('mousedown', (ev) => {
+      document.addEventListener('mousemove', clearCanvas)
+    })
+    document.addEventListener('mouseup', (ev) => {
+      document.removeEventListener('mousemove', clearCanvas)
+      finishClearCanvas()
     })
 
   }
@@ -95,9 +155,7 @@ class Sketch {
 
     this.clear()
 
-    for (let indexLine = 0; indexLine < this.particles.length; indexLine++) {
-      this.particles[indexLine].animate(this.time, this.mouse)
-    }
+    this.part.animate(this.time, this.mouse)
 
     requestAnimationFrame(this.animate.bind(this))
   }
