@@ -136,6 +136,7 @@ class Sketch {
           this.ctx.fillStyle = `rgba(255, 255, 255, 0.1)`
           this.ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT)
           this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT)
+          window.cancelAnimationFrame(this.req);
         }
       }).play()
     }
@@ -156,8 +157,9 @@ class Sketch {
     this.clear()
 
     this.part.animate(this.time, this.mouse)
+    console.log('toto');
 
-    requestAnimationFrame(this.animate.bind(this))
+    this.req = requestAnimationFrame(this.animate.bind(this))
   }
 
   clear() {
