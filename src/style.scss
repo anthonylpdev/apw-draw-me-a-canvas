@@ -147,19 +147,20 @@ body {
   aside {
     z-index: -1;
     width: 100%;
-    font-family: "Kate Disp", sans-serif;
-    font-size: 480px;
-    line-height: 500px;
     display: flex;
     align-items: center;
-    text-transform: lowercase;
-    color: transparent;
-    -webkit-text-stroke: 1px $color-primary;
     position: fixed;
     top: -328px;
     left: 0;
+
+    font-family: "Kate Disp", sans-serif;
+    font-size: 480px;
+    line-height: 500px;
+    text-transform: lowercase;
+    color: transparent;
     word-break: break-all;
     opacity: 0.1;
+    -webkit-text-stroke: 1px $color-primary;
   }
   .container {
     width: 1312px;

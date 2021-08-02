@@ -7,6 +7,7 @@ export default class Particle {
     this.range = this.randomRange(10, 50)
     this.brush = brush
     this.particleScale = 1.5
+    this.disabled = false;
 
   }
 
