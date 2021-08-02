@@ -84,7 +84,7 @@ nav a.white
   justify-content: center;
 }
 
-.nav_third a
+.nav_third a, .nav_fourth a
 {
   width: 40px;
   height: 40px;
@@ -150,6 +150,10 @@ nav a.white
 }
 
 
+a.emote {
+  overflow: hidden;
+}
+
 .nav_second a.selected__size {
   background-color: white;
   color: black;
@@ -158,6 +162,13 @@ nav a.white
 }
 
 .nav_third a.selected__form {
+  background-color: white;
+  color: black;
+  transition:0.5s all ease-in-out;
+  border: 1px solid black;
+}
+
+.nav_third a.selected__emote {
   background-color: white;
   color: black;
   transition:0.5s all ease-in-out;
@@ -206,6 +217,16 @@ div#black
     position: fixed;
   bottom: 30px;
   left: 325px;
+  z-index: 1;
+}
+
+#flex_third
+{
+  margin-left: 0px;
+  flex-direction: column;
+    position: fixed;
+  bottom: 30px;
+  left: 605px;
   z-index: 1;
 }
 
