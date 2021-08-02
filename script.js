@@ -62,12 +62,6 @@ const form = document.querySelectorAll("#flex_second > .nav_third > a.form")
 
 const emotes = document.querySelectorAll(".nav_third > a.emote")
 
-
-const flame = document.querySelector("a.flame")
-const bug = document.querySelector("a.bug")
-const fr = document.querySelector("a.fr")
-
-
 const eraser = document.querySelector(".eraser")
 const full = document.querySelector(".all")
 
@@ -98,94 +92,42 @@ function resetForm() {
 }
 
 
+for(var i = 0; i < emotes.length; i++){
 
-bug.addEventListener('click', (e) => {
+  emotes[i].addEventListener('click', (e) => {
 
-  for(var i = 0; i < emotes.length; i++){
-    emotes[i].classList.remove('selected__emote')
-    }
+    for(var i = 0; i < emotes.length; i++){
+      emotes[i].classList.remove('selected__emote')
+      }
+  
+    e.target.parentElement.classList.add('selected__emote')
+  
+    shouldPaint = false;
+  
+    isSelected = true;
 
-  e.target.parentElement.classList.add('selected__emote')
+    image.src = e.target.parentElement.classList[1]+".png"
+  
+    currentColor.style.background = "transparent url('"+e.target.parentElement.classList[1]+".png') no-repeat center";
+    currentColor.style.backgroundSize = "cover";
+  });
 
-  shouldPaint = false;
-
-  isSelected = true;
-
-  image.src = "bug.png"
-
-  currentColor.style.background = "transparent url('bug.png') no-repeat center";
-  currentColor.style.backgroundSize = "cover";
-});
-
-
-
-flame.addEventListener('click', (e) => {
-
-  for(var i = 0; i < emotes.length; i++){
-    emotes[i].classList.remove('selected__emote')
-    }
-
-  console.log(e.target)
-
-  e.target.parentElement.classList.add('selected__emote')
-
-  shouldPaint = false;
-
-  isSelected = true;
-
-  image.src = "flame.png"
-
-  currentColor.style.background = "transparent url('flame.png') no-repeat center";
-  currentColor.style.backgroundSize = "cover"
-
-});
-
-fr.addEventListener('click', (e) => {
-
-  for(var i = 0; i < emotes.length; i++){
-    emotes[i].classList.remove('selected__emote')
-    }
-
-  e.target.parentElement.classList.add('selected__emote')
-
-  shouldPaint = false;
-
-  isSelected = true;
-
-  image.src = "fr.png"
-
-  currentColor.style.background = "transparent url('fr.png') no-repeat center";
-  currentColor.style.backgroundSize = "cover"
-
-});
-
+}
 
 canvas.addEventListener('click', (e) => {
-
-
   if (isSelected) {
     shouldPaintImage = true;
-
       if (shouldPaintImage) {
-
         context.drawImage(image, event.pageX - 75, event.pageY - 75, 150, 150)
-
       }
   }
-  
-
-
 });
 
 for(var i = 0; i < form.length; i++){
   form[i].addEventListener('click', (e) => {
     shouldPaintImage = false;
     isSelected = false;
-    
-    console.log(e)
     resetForm()
-
-
     for(var i = 0; i < emotes.length; i++){
     emotes[i].classList.remove('selected__emote')
     }
@@ -220,8 +162,6 @@ for(var i = 0; i < color.length; i++){
 
     eraser.classList.remove("selected_button");
     current__color__e = e.target.dataset.color
-    
-    console.log(current__color__e)
     currentColor.style.background = current__color__e;
   })
 }
@@ -232,11 +172,9 @@ for(var i = 0; i < size.length; i++){
     shouldPaintImage = false;
     isSelected = false;
     resetSize();
-
     for(var i = 0; i < emotes.length; i++){
       emotes[i].classList.remove('selected__emote')
       }
-
 
       if (currentColor.style.background == "black") {
         context.strokeStyle = "black"
@@ -249,24 +187,19 @@ for(var i = 0; i < size.length; i++){
     e.target.classList.add("selected__size")
     full.classList.remove("selected_button");
     current__size__e = e.target.innerHTML;
-    
     context.lineWidth = current__size__e 
-    
     sizeSelected.innerHTML = current__size__e 
   })
-  
   size[i].classList.remove("selected__size")
 }
 
 eraser.addEventListener('click', () => {
   shouldPaintImage = false;
   isSelected = false;
-
   for(var i = 0; i < emotes.length; i++){
     emotes[i].classList.remove('selected__emote')
     }
-
-    currentColor.style.background = "white";
+  currentColor.style.background = "white";
   context.strokeStyle = "white";
   resetSize();
   for(var i = 0; i < color.length; i++){
@@ -293,14 +226,7 @@ full.addEventListener('click', () => {
   eraser.classList.remove("selected_button");
   context.lineWidth = 4000 
   sizeSelected.innerHTML = 'Full';
-  
 })
-
-
-
-
-
-
 
 document.querySelectorAll("nav a").forEach(link => {
   link.addEventListener("click", function(event){
@@ -318,19 +244,15 @@ clear.addEventListener("click",() => {
   for(var i = 0; i < emotes.length; i++){
     emotes[i].classList.remove('selected__emote')
     }
-
-  // Use the identity matrix while clearing the canvas
   context.setTransform(1, 0, 0, 1, 0, 0);
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 })
 
-
 const saveButton = document.querySelector('.capture');
 saveButton.addEventListener('click', () => save(canvas));
 
-
 function save(canvas) {
-  const data = canvas.toDataURL('image/png');
+  const data = canvas.toDataURL('image/jpeg');
   const anchor = document.createElement('a');
   anchor.href = data;
   anchor.download = 'image.jpg';
