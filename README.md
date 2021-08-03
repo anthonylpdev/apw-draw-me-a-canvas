@@ -11,4 +11,4 @@ Ouvrir le fichier "index.html" avec live-server (ou tout autre serveur web)
 - Créer ou moins une interaction au curseur
 
 ## Démo
- https://chabloz.eu/files/canvas2d_xp1/
+ https://onivers.com/sand-stone-water/
