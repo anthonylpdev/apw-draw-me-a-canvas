@@ -115,10 +115,8 @@ export default class {
   *entities() {
     const halfRows = Math.floor(this.rows / 2);
     const halfCols = Math.floor(this.cols / 2);
-    // for (let x = -halfCols; x <= halfCols; x++) {
-    //   for (let y = -halfRows; y <= halfRows; y++) {
-    for (let x = halfCols; x >= -halfCols; x--) {
-      for (let y = halfRows; y >= -halfRows; y--) {
+    for (let x = -halfCols; x <= halfCols; x++) {
+      for (let y = -halfRows; y <= halfRows; y++) {
         let particule = this.getEntityAt({x, y});
         if (!particule) continue;
         let pos = this.getPosFromCoord({x, y});

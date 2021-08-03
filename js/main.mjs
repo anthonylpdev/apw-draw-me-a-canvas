@@ -16,6 +16,17 @@ const mainloop = new MainLoop({
   draw: () => canvas.redraw()
 });
 
+// put some stones on the board ( U shape)
+function buildUShape({center, size}) {
+  let halfSize = Math.floor(size/2);
+  for (let x = center.x - halfSize; x <= center.x + halfSize; x++) grid.setEntityAt({entity: 'wall', x, y: center.y - size});
+  for (let y = center.y - size; y <= center.y - halfSize; y++) grid.setEntityAt({entity: 'wall', x: center.x - halfSize, y});
+  for (let y = center.y - size; y <= center.y - halfSize; y++) grid.setEntityAt({entity: 'wall', x: center.x + halfSize, y});
+}
+buildUShape({center: {x: 0, y: 0}, size: 10});
+buildUShape({center: {x: 10, y: -20}, size: 10});
+buildUShape({center: {x: -10, y: -20}, size: 10});
+
 
 let clickIsActive;
 let mouseCoord;
