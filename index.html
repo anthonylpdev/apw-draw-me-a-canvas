@@ -1,12 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Make a canvas</title>
-</head>
-<body>
-    <canvas id="main"></canvas>
-
-    <script src="script.js"></script>
-</body>
+<html>
+  <head>
+    <title>Sand, Stone & Water Simulator</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      canvas {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+      v-modal {
+        position: absolute;
+        top: 10;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width:  80vw;
+        font-family: monospace;
+        text-align: center;
+        padding: 1rem;
+        z-index: 1000;
+        user-select: none;
+      }
+      h1, h2 {
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1rem;
+        margin: 1rem;
+      }
+    </style>
+    <script type="module" src="js/main.mjs"></script>
+  </head>
+  <body>
+    <v-modal>
+      <h1>Sand, Stone & Water Simulator</h1>
+      <h2>Canvas2D - vanilla.js</h2>
+      <h3>By Synn</h3>
+      <p>Click (or drag mouse) to create sand</p>
+      <p>Shift + click to create stone</p>
+      <p>Ctrl + click to create water</p>
+    </v-modal>
+  </body>
 </html>
