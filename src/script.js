@@ -13,8 +13,6 @@ class Sketch {
   setup() {
     this.time = window.performance.now()
 
-    this.color = Color[this.randomRange(0, Color.length - 1)]
-
     this.canvas = document.getElementById('main')
     this.ctx = this.canvas.getContext('2d')
     this.WIDTH = window.innerWidth
@@ -164,10 +162,6 @@ class Sketch {
     }
 
     requestAnimationFrame(this.animate.bind(this))
-  }
-
-  randomRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
 }

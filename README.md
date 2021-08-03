@@ -24,3 +24,8 @@ yarn dev
 ### Image
 - https://unsplash.com/photos/dIKLuM5EyRw
 
+### Icon
+- https://www.flaticon.com/
+
+### Inspiration
+- https://thirdbykenjiro.com/
