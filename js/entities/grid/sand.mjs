@@ -16,7 +16,11 @@ export default class extends Grid {
     }
   }
 
-  update(dt, elapsedTime) {
+  update() {
+    this.copy = this.getNewMatrix();
+    for (const entity of this) {
+      this.copy[entity.x][entity.y] = entity.particule;
+    }
     for (const entity of this) {
      if (entity.particule === 'sand') {
       this.updateSand(entity);
@@ -24,6 +28,7 @@ export default class extends Grid {
       this.updateWater(entity);
      }
     }
+    this.grid = this.copy;
   }
 
   updateSand(entity) {
@@ -42,21 +47,22 @@ export default class extends Grid {
     }
     if (nextPos && this.isValidPos(nextPos)) {
       let entityAtNextPos = this.getEntityAt(nextPos);
-      this.setEntityAt({entity: entity.particule, x: nextPos.x, y: nextPos.y});
+      this.setEntityAt({entity: entity.particule, x: nextPos.x, y: nextPos.y, grid: this.copy});
+      this.removeEntityAt({x: entity.x, y: entity.y, grid: this.copy});
       if (entityAtNextPos === "water") {
-        this.setEntityAt({entity: "water", x: entity.x + (Math.random() < 0.5 ? +1 : -1), y: entity.y});
+        //todo splashing effect
       }
-      this.removeEntityAt({x: entity.x, y: entity.y});
     }
   }
 
   updateWater(entity) {
     let nextPos = null;
-    let below = this.getEntityAt({x: entity.x, y: entity.y - 1});
-    let belowLeft = this.getEntityAt({x: entity.x - 1, y: entity.y - 1});
-    let belowRight = this.getEntityAt({x: entity.x + 1, y: entity.y - 1});
-    let left = this.getEntityAt({x: entity.x - 1, y: entity.y});
-    let right = this.getEntityAt({x: entity.x + 1, y: entity.y});
+    let below = this.getEntityAt({x: entity.x, y: entity.y - 1, grid: this.copy});
+    let belowLeft = this.getEntityAt({x: entity.x - 1, y: entity.y - 1, grid: this.copy});
+    let belowRight = this.getEntityAt({x: entity.x + 1, y: entity.y - 1, grid: this.copy});
+    let left = this.getEntityAt({x: entity.x - 1, y: entity.y, grid: this.copy});
+    let right = this.getEntityAt({x: entity.x + 1, y: entity.y, grid: this.copy});
+
     if (!below) {
       nextPos = {x: entity.x, y: entity.y - 1};
     } else if (!belowLeft && !belowRight) {
@@ -73,8 +79,8 @@ export default class extends Grid {
       nextPos = {x: entity.x + 1, y: entity.y};
     }
     if (nextPos && this.isValidPos(nextPos)) {
-      this.setEntityAt({entity: entity.particule, x: nextPos.x, y: nextPos.y});
-      this.removeEntityAt({x: entity.x, y: entity.y});
+      this.setEntityAt({entity: entity.particule, x: nextPos.x, y: nextPos.y, grid: this.copy});
+      this.removeEntityAt({x: entity.x, y: entity.y, grid: this.copy});
     }
   }
 

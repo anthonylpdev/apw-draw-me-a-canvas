@@ -2,8 +2,8 @@ import Canvas from './utils/canvas.mjs';
 import MainLoop from './utils/mainloop.mjs';
 import Grid from './entities/grid/sand.mjs';
 
-const canvas = new Canvas({blurryRedraw: 0.4});
-const grid = new Grid({ctx: canvas.getCtx(), cellsize: 6, padding: 0, mustDrawGrid: false});
+const canvas = new Canvas({blur: 4});
+const grid = new Grid({ctx: canvas.getCtx(), cellsize: 7, padding: 0, mustDrawGrid: false});
 
 canvas.setDraw((ctx) => grid.draw(ctx));
 
@@ -21,7 +21,8 @@ let clickIsActive;
 let mouseCoord;
 let entity = '';
 function manageMouse(evt) {
-  let coord = grid.getCoordFromPos({x: evt.clientX, y: evt.clientY});
+  let rect = canvas.get().getBoundingClientRect();
+  let coord = grid.getCoordFromPos({x: evt.clientX - rect.left, y: evt.clientY - rect.top});
   if (!coord) return;
   mouseCoord = coord;
   entity = 'sand';

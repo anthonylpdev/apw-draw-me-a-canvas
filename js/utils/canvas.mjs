@@ -1,14 +1,14 @@
 // Minimalist Canvas manager
 export default class {
 
-  constructor({draw = () => 0, blurryRedraw = false, shadowColor = 'black'} = {}) {
+  constructor({draw = () => 0, blur = false, shadowColor = 'black'} = {}) {
     let canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
     this.ctx = canvas.getContext('2d');
     this.ctx.canvas.width = this.ctx.canvas.clientWidth;
     this.ctx.canvas.height = this.ctx.canvas.clientHeight;
     this.callbackDraw = draw;
-    this.blurryRedraw = blurryRedraw;
+    this.blur = blur;
     this.shadowColor = shadowColor;
   }
 
@@ -33,10 +33,10 @@ export default class {
   }
 
   redraw() {
-    this.ctx.shadowBlur = this.blurryRedraw * 10;
+    this.ctx.canvas.width = this.ctx.canvas.clientWidth;
+    this.ctx.canvas.height = this.ctx.canvas.clientHeight;
+    this.ctx.shadowBlur = this.blur;
     this.ctx.shadowColor = this.shadowColor;
-    this.ctx.fillStyle = `rgba(255,255,255,${this.blurryRedraw || 1})`;
-    this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
     this.draw();
   }
 

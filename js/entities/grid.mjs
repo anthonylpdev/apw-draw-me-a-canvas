@@ -32,16 +32,16 @@ export default class {
     return matrix;
   }
 
-  setEntityAt({entity, x = 0, y = 0}) {
-    this.grid[x][y] = entity;
+  setEntityAt({entity, x = 0, y = 0, grid = this.grid}) {
+    grid[x][y] = entity;
   }
 
-  getEntityAt({x = 0, y = 0}) {
-    return this.isValidPos({x, y}) ? this.grid[x][y] : null;
+  getEntityAt({x = 0, y = 0, grid = this.grid}) {
+    return this.isValidPos({x, y}) ? grid[x][y] : null;
   }
 
-  removeEntityAt({x = 0, y = 0}) {
-    this.grid[x][y] = false;
+  removeEntityAt({x = 0, y = 0, grid = this.grid}) {
+    grid[x][y] = false;
   }
 
   genPath() {
@@ -115,8 +115,10 @@ export default class {
   *entities() {
     const halfRows = Math.floor(this.rows / 2);
     const halfCols = Math.floor(this.cols / 2);
-    for (let x = -halfCols; x <= halfCols; x++) {
-      for (let y = -halfRows; y <= halfRows; y++) {
+    // for (let x = -halfCols; x <= halfCols; x++) {
+    //   for (let y = -halfRows; y <= halfRows; y++) {
+    for (let x = halfCols; x >= -halfCols; x--) {
+      for (let y = halfRows; y >= -halfRows; y--) {
         let particule = this.getEntityAt({x, y});
         if (!particule) continue;
         let pos = this.getPosFromCoord({x, y});

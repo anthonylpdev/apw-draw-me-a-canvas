@@ -9,19 +9,28 @@
         margin: 0;
         box-sizing: border-box;
       }
+      body {
+        background-color: #888;
+      }
       canvas {
         display: block;
         position: absolute;
+        background-color: #aaa;
         top: 0;
-        left: 0;
+        left: 50%;
+        transform: translateX(-50%);
         width: 100vw;
         height: 100vh;
+        max-width: 1024px;
+        border: solid #333;
+        border-width: 0 2px 0 2px;
+        box-shadow: 0 0 1.5rem #333;
       }
       v-modal {
         position: absolute;
         top: 10;
         left: 50%;
-        transform: translate(-50%, 0);
+        transform: translateX(-50%);
         width:  80vw;
         font-family: monospace;
         text-align: center;
