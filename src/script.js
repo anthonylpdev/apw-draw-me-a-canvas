@@ -28,7 +28,7 @@ class Sketch {
     this.ctx.imageSmoothingQuality = 'high'
 
     this.ctx.globalCompositeOperation = 'multiply'
-    this.ctx.fillStyle = `rgba(255, 255, 255, 0.2)`
+    this.ctx.fillStyle = `rgba(255, 255, 255, 0.7)`
     this.ctx.filter = 'blur(16px)'
     this.ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT)
 
@@ -83,8 +83,7 @@ class Sketch {
       }).to(this.mouse, {
         x: this.WIDTH,
         duration: 0,
-      })
-      .to(this.mouse, {
+      }).to(this.mouse, {
         x: -this.WIDTH / 2,
         y: this.HEIGHT / 2,
       }).to(this.mouse, {
@@ -98,13 +97,27 @@ class Sketch {
         x: this.WIDTH,
         duration: duration,
         onComplete: () => {
-          this.ctx.fillStyle = `rgba(255, 255, 255, 0.1)`
-          this.ctx.fillRect(0, 0, this.WIDTH, this.HEIGHT)
-          this.ctx.clearRect(0, 0, this.WIDTH, this.HEIGHT)
-          // window.cancelAnimationFrame(this.req);
           this.part.disabled = true
           this.scroll.disabled = false
-        }
+          gsap.timeline()
+          .to('#main', {
+            opacity: 0,
+            ease: 'power4.out'
+          })
+          .to('#main', {
+            zIndex: -10,
+            duration: 0
+          })
+          .fromTo('.hide-on-load', {
+            y: -20,
+          }, {
+            opacity: 1,
+            stagger: 0.1,
+            y: 0,
+            ease: 'power4.out'
+          })
+          .play()
+        },
       }).play()
 
     }
@@ -124,16 +137,15 @@ class Sketch {
   animate(test) {
     this.time = test
 
-    if(!this.part.disabled){
+    if (!this.part.disabled) {
       this.part.animate(this.time, this.mouse)
     }
-    if(!this.scroll.disabled){
+    if (!this.scroll.disabled) {
       this.scroll.animate()
     }
 
-    this.req = requestAnimationFrame(this.animate.bind(this))
+    requestAnimationFrame(this.animate.bind(this))
   }
-
 
   randomRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
