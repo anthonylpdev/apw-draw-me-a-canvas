@@ -41,12 +41,12 @@ body {
         }
         ul {
           li {
-          &.active {
-            a {
-              color: $color-secondary;
+            &.active {
+              a {
+                color: $color-secondary;
+              }
             }
           }
-        }
         }
       }
       nav {
@@ -71,6 +71,29 @@ body {
       }
     }
     section {
+      &.intro {
+        position: fixed;
+        z-index: 1000;
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        @include text-style-body-regular-text-2();
+        color: $color-invert;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .inner {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          svg {
+            padding-bottom: 32px;
+          }
+        }
+      }
       &.presentation {
         padding-top: 304px;
         h1 {
@@ -152,7 +175,6 @@ body {
     top: -328px;
     left: 0;
     opacity: 0;
-
     font-family: "Kate Disp", sans-serif;
     font-size: 480px;
     line-height: 500px;

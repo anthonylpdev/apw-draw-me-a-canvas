@@ -122,12 +122,31 @@ class Sketch {
 
     }
 
-    document.addEventListener('mousedown', (ev) => {
-      document.addEventListener('mousemove', clearCanvas)
-    })
-    document.addEventListener('mouseup', (ev) => {
-      document.removeEventListener('mousemove', clearCanvas)
-      finishClearCanvas()
+    document.addEventListener('click', (event) => {
+      event.preventDefault()
+
+      gsap.timeline()
+      .to('#intro', {
+        opacity: 0,
+        duration: 1,
+        ease: 'power4.out',
+      })
+      .to('#intro', {
+        zIndex: -100,
+        duration: 0,
+        onComplete: () => {
+          this.part.disabled = false;
+          document.addEventListener('mousedown', (ev) => {
+            document.addEventListener('mousemove', clearCanvas)
+          })
+          document.addEventListener('mouseup', (ev) => {
+            document.removeEventListener('mousemove', clearCanvas)
+            finishClearCanvas()
+          })
+        }
+      })
+      .play()
+
     })
 
     this.scroll = new Scroll()
