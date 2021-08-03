@@ -2,9 +2,13 @@
 
 ![APW for Three.js](apw.png)
 
+## Installation
+Ouvrir le fichier "index.html" avec live-server (ou tout autre serveur web)
+
 ## Objectif
 - Mise en place d'une animation Canvas
 - CanvasRenderingContext2D
 - Créer ou moins une interaction au curseur
 
-démo en ligne:
+## Démo
+ https://chabloz.eu/files/canvas2d_xp1/
