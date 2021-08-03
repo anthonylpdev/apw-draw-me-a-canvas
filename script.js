@@ -106,9 +106,13 @@ for(var i = 0; i < emotes.length; i++){
   
     isSelected = true;
 
-    image.src = e.target.parentElement.classList[1]+".png"
+    console.log(e.target)
+
+    console.log(e.target.attributes.src.nodeValue)
+
+    image.src = e.target.attributes.src.nodeValue
   
-    currentColor.style.background = "transparent url('"+e.target.parentElement.classList[1]+".png') no-repeat center";
+    currentColor.style.background = "transparent url('"+e.target.attributes.src.nodeValue+"') no-repeat center";
     currentColor.style.backgroundSize = "cover";
   });
 
